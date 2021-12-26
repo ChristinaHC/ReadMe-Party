@@ -39,7 +39,7 @@ const questions = [
     {
         type: "list",
         name: "openSource",
-        message: "Is this project open source? Please select 'yes' or 'no'.",
+        message: "Is this project open source? Please select 'Yes' or 'No'.",
         choices: ["Yes", "No"]
     },
     {
@@ -50,7 +50,7 @@ const questions = [
     {
         type: "list",
         name: "testing",
-        message: "Is testing available for your project. Please select 'yes' or 'no'.",
+        message: "Is testing available for your project. Please select 'Yes' or 'No'.",
         choices: ["Yes", "No"]
     },
     {
@@ -72,10 +72,14 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const writeToFile = (fileName, data) => {
+    
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+const init = () => {
+    return inquirer.prompt(questions);
+};
 
 // Function call to initialize app
 init();
