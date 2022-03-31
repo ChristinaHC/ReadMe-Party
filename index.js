@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("./utils.generateMarkdown.js");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -23,7 +23,7 @@ const questions = [
     {
         type: "input",
         name: "installation",
-        message: "What type of installation procedure(s) are needed? If none type 'none')"    
+        message: "What type of installation procedure(s) are needed? If none type 'none')"
     },
     {
         type: "input",
@@ -45,7 +45,8 @@ const questions = [
     {
         type: "input",
         name: "contributing",
-        message: "How are others allowed to contribute to this project?"
+        message: "How are others allowed to contribute to this project? If you would like to use the Contributor Covenant guidelines, simply hit enter!",
+        default: "[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)"
     },
     {
         type: "list",
@@ -72,13 +73,20 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-const writeToFile = (fileName, data) => {
-    
-}
+function generateTableOfContents(answers) { }
 
 // TODO: Create a function to initialize app
-const init = () => {
-    return inquirer.prompt(questions);
+function init() {
+    inquirer.prompt(questions)
+        .then((answers) => {
+            console.log(answers)
+            const generatedReadMe = generateMarkdown(answers);
+            console.log(generatedReadMe);
+            fs.writeFile("ReadMe.md", generatedReadMe, (err) => {
+                if (err) throw err;
+                console.log("Successfully generated README");
+            })
+        })
 };
 
 // Function call to initialize app
